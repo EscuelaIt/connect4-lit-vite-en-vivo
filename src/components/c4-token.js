@@ -36,7 +36,8 @@ export class C4Token extends LitElement {
 
     static get properties() {
       return {
-        color: { type: String }
+        color: { type: String },
+        index: { type: Number },
       };
     }
 
@@ -44,8 +45,21 @@ export class C4Token extends LitElement {
         return html`
             <span
                 class="${this.color}"
+                @click=${this.doClick}
             ></span>
         `;
     }
+
+    doClick(e) {
+        this.dispatchEvent(new CustomEvent('token-selected', { 
+            // bubbles: true,
+            // composed: true,
+            detail: { 
+                index: this.index
+            }
+        }));
+    }
+
+
 }
 customElements.define('c4-token', C4Token);

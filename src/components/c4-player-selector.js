@@ -51,7 +51,7 @@ export class C4PlayerSelector extends LitElement {
     // }
     
     setPlayers(numPlayers) {
-        return function(numPlayers) {
+        return function() {
             this.dispatchEvent(new CustomEvent('set-players', {
                 // bubbles: true,
                 // composed: true, 
