@@ -49,7 +49,7 @@ export class C4Board extends LitElement {
             }
         }
         this.boardColors = colors;
-        console.log(colors);
+        //console.log(colors);
     }
 
     doTokenSelected(e) {

@@ -20,8 +20,8 @@ export class C4Message extends LitElement {
 
     constructor() {
         super();
-        window.addEventListener('new-message', (e) => this.showMessage(e.detail.message));
-        window.addEventListener('append-message', (e) => this.appendMessage(e.detail.message));
+        document.addEventListener('new-message', (e) => this.showMessage(e.detail.message));
+        document.addEventListener('append-message', (e) => this.appendMessage(e.detail.message));
     }
 
     render() {

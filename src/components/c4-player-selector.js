@@ -23,9 +23,7 @@ export class C4PlayerSelector extends LitElement {
                 margin: 0.5rem;
                 list-style-type: none;
             }
-            li:first-child {
-                margin-left: 0;
-            }
+            
         `
     ];
 
@@ -53,8 +51,6 @@ export class C4PlayerSelector extends LitElement {
     setPlayers(numPlayers) {
         return function() {
             this.dispatchEvent(new CustomEvent('set-players', {
-                // bubbles: true,
-                // composed: true, 
                 detail: {
                     numPlayers
                 }

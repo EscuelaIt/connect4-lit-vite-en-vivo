@@ -10,6 +10,7 @@ import { Message } from '../views/Message.js';
 
 export class C4Game extends LitElement {
     #game;
+    #waitForUserInput;
 
     static styles = [
         gameCSS,
@@ -25,10 +26,14 @@ export class C4Game extends LitElement {
         super();
         this.#game = new Game();
         this.started = false;
+        this.#waitForUserInput = false;
     }
 
     firstUpdated() {
         Message.TITLE.write();
+        // this.shadowRoot.querySelector('c4-turn').addEventListener('machine-player-column',
+        //     (e) => { console.log(e); }
+        // );
     }
 
     render() {
@@ -41,6 +46,7 @@ export class C4Game extends LitElement {
                         id="theturn"
                         .game=${this.#game}
                         @machine-player-column=${this.doMachineColumnSelected}
+                        @wait-for-user-input=${this.doWaitForUserInput}
                     ></c4-turn>
                 </header>
                 <main>
@@ -72,7 +78,11 @@ export class C4Game extends LitElement {
 
     doSetPlayers(e) {
         console.log('setear estos jugadores', e.detail.numPlayers);
-        this.#game.reset(e.detail.numPlayers);
+        this.resetGame(e.detail.numPlayers)
+    }
+
+    resetGame(numPlayers) {
+        this.#game.reset(numPlayers);
         this.board.updateBoard();
         this.started = true;
         this.turn.dropToken();
@@ -87,11 +97,14 @@ export class C4Game extends LitElement {
     }
 
     doUserColumnSelected(e) {
-        let column = e.detail.column;
-        console.log('columna: ', column);
-        let player = this.#game.getActivePlayer();
-        player.dropToken(column);
-        this.updateBoard(player);
+        if(this.#waitForUserInput) {
+            this.#waitForUserInput = false;
+            let column = e.detail.column;
+            console.log('columna: ', column);
+            let player = this.#game.getActivePlayer();
+            player.dropToken(column);
+            this.updateBoard(player);
+        }
     }
 
     updateBoard(player) {
@@ -104,6 +117,10 @@ export class C4Game extends LitElement {
             this.#game.next();
             this.turn.dropToken();
         }
+    }
+
+    doWaitForUserInput() {
+        this.#waitForUserInput = true;
     }
 }
 customElements.define('c4-game', C4Game);

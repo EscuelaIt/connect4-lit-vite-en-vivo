@@ -72,7 +72,7 @@ export class C4Turn extends LitElement {
         let message = new Message(userPlayer.getColor().toString());
         message.append();
         Message.ENTER_COLUMN_TO_DROP.append();
-        //new UserPlayerView(userPlayer).dropToken();
+        this.dispatchEvent(new CustomEvent('wait-for-user-input'));
     }
 
     visitMachinePlayer(machinePlayer) {
