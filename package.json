@@ -11,11 +11,13 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "vite": "^3.2.5"
+    "vite": "^3.2.5",
+    "vite-plugin-pwa": "^0.14.0"
   },
   "dependencies": {
     "@dile/dile-button": "^2.3.1",
     "@dile/dile-button-icon": "^0.0.19",
+    "@dile/dile-toast-persistent": "^0.1.0",
     "@dile/icons": "^0.0.16",
     "lit": "^2.4.1"
   }
