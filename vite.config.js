@@ -17,7 +17,7 @@ export default defineConfig({
                 name: 'Connect 4',
                 short_name: 'Connect 4',
                 description: 'Connect 4 game',
-                theme_color: '#09A5FF',
+                theme_color: '#666666',
                 icons: [
                   {
                     src: 'pwa-192x192.png',
